@@ -1,0 +1,68 @@
+body {
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+nav {
+  margin-bottom: 50px;
+}
+
+i {
+padding-right: 10px;
+}
+
+p.resultado {
+  padding-top: 5px;
+}
+
+.calor-1 {
+  background-color: #fff !important;
+}
+
+.calor-2 {
+  background-color: #fafafa !important;
+}
+
+.calor-3 {
+  background-color: #ffeaa7 !important;
+}
+
+.calor-4 {
+  background-color: #f6e58d !important;    
+}
+
+.calor-5 {
+  background-color: #fdcb6e !important;
+}
+
+.calor-6 {
+  background-color: #f1c40f !important;
+}
+
+.calor-5 {
+  background-color: #f9ca24 !important;
+}
+
+.calor-6 {
+  background-color: #f39c12 !important;
+}
+
+.calor-7 {
+  background-color: #e67e22 !important;
+}
+
+.calor-8 {
+  color: #fff !important;
+  background-color: #d35400 !important;
+}
+
+.calor-9 {
+  color: #fff !important;
+  background-color: #e74c3c !important;
+}
+
+.calor-10 {
+  color: #fff !important;
+  font-weight: bolder !important;
+  background-color: #c0392b !important;
+}

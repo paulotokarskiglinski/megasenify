@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Paulo Henrique Tokarski Glinski @paulotokarskiglinski">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <strong>Megasenify BETA</strong>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a href="" class="navbar-item">
+            <i class="fab fa-github"></i>GitHub
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="columns">
+        <div class="column"></div>
+
+        <div class="column">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Teste a sua jogo!
+              </p>
+            </header>
+            <div class="card-content">
+              <form method="POST" action="/">
+                <div class="columns">
+                  <div class="column">
+                    <input class="input" type="number" name="bola1" placeholder="1º Número" required>
+                  </div>
+                  <div class="column">
+                    <input class="input" type="number" name="bola2" placeholder="2º Número" required>
+                  </div>
+                  <div class="column">
+                    <input class="input" type="number" name="bola3" placeholder="3º Número" required>
+                  </div>
+                  <div class="column">
+                    <input class="input" type="number" name="bola4" placeholder="4º Número" required>
+                  </div>
+                  <div class="column">
+                    <input class="input" type="number" name="bola5" placeholder="5º Número" required>
+                  </div>
+                  <div class="column">
+                    <input class="input" type="number" name="bola6" placeholder="6º Número" required>
+                  </div>
+                  <div class="column">
+                    <button type="submit" class="button is-info is-fullwidth">Testar</button>
+                  </div>
+                </div>
+              </form>
+              <br>
+              <p>
+                <small>
+                  A clicar em 'Testar' a rede neural iniciará o aprendizado com os sorteios anteriores da Mega Sena e calculará as chances de sua jogada vencer. 
+                  O processamento pode levar mais de 20s.
+                </small>
+              </p>
+              <% if (resultadoRedeNeural && jogada) { %>
+              <br>
+              <div class="columns">
+                <div class="column">
+                  <p>
+                    <b>Jogo</b>
+                  </p>
+                  <button class="button is-primary"><%= jogada.bola1 %></button>
+                  <button class="button is-primary"><%= jogada.bola2 %></button>
+                  <button class="button is-primary"><%= jogada.bola3 %></button>
+                  <button class="button is-primary"><%= jogada.bola4 %></button>
+                  <button class="button is-primary"><%= jogada.bola5 %></button>
+                  <button class="button is-primary"><%= jogada.bola6 %></button>
+                </div>
+                <div class="column">
+                  <p>
+                    <b>Rede Neural</b>
+                  </p>
+                  <p class="resultado">
+                    <b>Vence:</b> <%= (resultadoRedeNeural.vence * 100).toFixed(4) %>% | <b>Perde:</b> <%= (resultadoRedeNeural.perde * 100).toFixed(4) %>%
+                  </p>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        
+          <br><br>
+
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Mapa de Calor
+              </p>
+            </header>
+            <div class="card-content">
+              <table class="table is-bordered">
+                <tbody>
+                  <% for (var l = 0, cont = 0; l < 6; l++) { %>
+                  <tr>
+                    <% for (var c = 0; c < 10; c++, cont++) { %>
+                    <td>
+                      <button class="button is-fullwidth calor-<%= mapaCalor[cont].calor %>"><%= mapaCalor[cont].bola %></button>
+                      <button class="button is-small is-fullwidth"><%= mapaCalor[cont].calor %>º C</button>
+                      <button class="button is-small is-fullwidth">x<%= mapaCalor[cont].repeticoes %></button>
+                    </td>
+                    <% } %>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <p>
+                <small>O calor (ºC) e as repetições indicam quais números foram mais e menos sorteados na Mega Sena.</small>
+              </p>
+            </div>
+          </div>
+
+          <br><br>
+
+          <% for(var cont = 0; cont < sorteios.length; cont++) { %>
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  Sorteio realizado em <%= sorteios[cont].Data %>
+                </p>
+              </header>
+              <div class="card-content">
+                <button class="button is-primary"><%= sorteios[cont].bola1 %></button>
+                <button class="button is-primary"><%= sorteios[cont].bola2 %></button>
+                <button class="button is-primary"><%= sorteios[cont].bola3 %></button>
+                <button class="button is-primary"><%= sorteios[cont].bola4 %></button>
+                <button class="button is-primary"><%= sorteios[cont].bola5 %></button>
+                <button class="button is-primary"><%= sorteios[cont].bola6 %></button>
+              </div>
+            </div>
+            <br>
+          <% } %>
+
+        </div>
+
+        <div class="column"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
